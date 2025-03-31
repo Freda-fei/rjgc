@@ -3,7 +3,8 @@ import unittest
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 import time
-
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 class NewVisitorTest(unittest.TestCase):
     def setUp(self):
@@ -20,6 +21,10 @@ class NewVisitorTest(unittest.TestCase):
         header_text = self.browser.find_element(By.TAG_NAME,'h1').text
         self.assertIn('To-Do',header_text)
 
+        # 等待页面加载完成
+        WebDriverWait(self.browser, 10).until(
+            EC.presence_of_element_located((By.ID, 'id_new_item'))
+        )
 
         # 应用有一个输入待办事项的文本输入框
         inputbox = self.browser.find_element(By.ID,'id_new_item')
