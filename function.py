@@ -28,13 +28,14 @@ class NewVisitorTest(unittest.TestCase):
 
         # 应用有一个输入待办事项的文本输入框
         inputbox = self.browser.find_element(By.ID,'id_new_item')
+
         self.assertEqual(
             inputbox.get_attribute('placeholder'),
             'Enter a to-do item'
         )
 
         # 在文本输入框输入了“Buy flowers”
-        inputbox.send_keys('Buy flowers')
+        inputbox.send_keys('Give a gift to Lisi')
 
         # 按回车键后，页面更新
         # 代办事项表格中显示了“1：Buy flowers”
@@ -44,6 +45,7 @@ class NewVisitorTest(unittest.TestCase):
         table = self.browser.find_element(By.ID,'id_list_table')
         rows = table.find_elements(By.TAG_NAME,'tr')
         self.assertIn('1: Buy flowers',[row.text for row in rows])
+        self.assertIn('2: Give a gift to Lisi', [row.text for row in rows])
         
         # 页面中又显示一个文本输入框，可以输入其他待办事项
         # 输入了一个“Send a gift to Lisi”
