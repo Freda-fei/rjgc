@@ -5,8 +5,9 @@ from selenium.webdriver.common.keys import Keys
 import time
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from django.test import LiveServerTestCase
 
-class NewVisitorTest(unittest.TestCase):
+class NewVisitorTest(LiveServerTestCase):
     def setUp(self):
         self.browser = webdriver.Chrome()
     def tearDown(self):
@@ -20,7 +21,7 @@ class NewVisitorTest(unittest.TestCase):
     def test_can_start_a_list_and_retrieve_it_later(self):
         # 一个在线代办事项的应用
         # 查看应用首页
-        self.browser.get("http://localhost:8000")
+        self.browser.get(self.live_server_url)
 
         # 网页首页里包含“To-Do”这个词
         self.assertIn('To-Do',self.browser.title)
@@ -72,6 +73,6 @@ class NewVisitorTest(unittest.TestCase):
         self.fail('Finish the test!')
         # 访问URL，发现他的代办事项列表还在
         # 满意的离开了
-if __name__ == '__main__':
-    unittest.main()
+# if __name__ == '__main__':
+#     unittest.main()
 
