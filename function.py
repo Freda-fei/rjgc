@@ -41,13 +41,13 @@ class NewVisitorTest(unittest.TestCase):
         )
 
         # 在文本输入框输入了“Buy flowers”
-        inputbox.send_keys('Give a gift to Lisi')
+        inputbox.send_keys('Buy flowers')
 
         # 按回车键后，页面更新
         # 代办事项表格中显示了“1：Buy flowers”
         inputbox.send_keys(Keys.ENTER)
         time.sleep(1)
-        self.check_for_row_in_list_table('1. Buy flowers')
+        self.check_for_row_in_list_table('1: Buy flowers')
 
 
         # table = self.browser.find_element(By.ID,'id_list_table')
@@ -65,8 +65,8 @@ class NewVisitorTest(unittest.TestCase):
 
 
         # 页面再次更新，它的清单中显示了这两个待办事项
-        self.check_for_row_in_list_table('1. Buy flowers')
-        self.check_for_row_in_list_table('2. Give a gift to Lisi')
+        self.check_for_row_in_list_table('1: Buy flowers')
+        self.check_for_row_in_list_table('2: Give a gift to Lisi')
         # 想知道这个网站是否会记住他的清单
         # 他看到网站为他生成了一个唯一的URL
         self.fail('Finish the test!')
