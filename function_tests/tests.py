@@ -3,16 +3,23 @@ import unittest
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 import time
+from django.conf import settings
+import os
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from django.test import LiveServerTestCase
+# from django.test import LiveServerTestCase
 from selenium.common.exceptions import WebDriverException
+from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 
 MAX_WAIT = 10 #(1)
 
-class NewVisitorTest(LiveServerTestCase):
+class NewVisitorTest(StaticLiveServerTestCase):
     def setUp(self):
         self.browser = webdriver.Chrome()
+        # #手动添加静态文件
+        # settings.STATIC_ROOT = os.path.join(settings.BASE_DIR,'static')
+        # settings.STATIC_URL = '/static/'
+        
     def tearDown(self):
         self.browser.quit()
         
