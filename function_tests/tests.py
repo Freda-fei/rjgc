@@ -16,9 +16,10 @@ MAX_WAIT = 10 #(1)
 class NewVisitorTest(StaticLiveServerTestCase):
     def setUp(self):
         self.browser = webdriver.Chrome()
-        # #手动添加静态文件
-        # settings.STATIC_ROOT = os.path.join(settings.BASE_DIR,'static')
-        # settings.STATIC_URL = '/static/'
+        real_server = os.environ.get('REAL_SERVER')#(1)
+        if real_server:
+            self.live_server_url = 'http://'+real_server#(2)
+
         
     def tearDown(self):
         self.browser.quit()
