@@ -1,12 +1,12 @@
 from fabric.contrib.files import append,exists,sed
 from fabric.api import env,local,run
 import random
-from fabric.context_managers import settings,hide
+
 
 REPO_URL = "https://github.com/Freda-fei/rjgc.git" #(1)
 
 def deploy():
-    site_folder = f'/home/{env.user}/sites/47.243.21.204_8092' #(2)(3)
+    site_folder = f'/home/yyy/sites/47.243.21.204_8092' #(2)(3)
     source_folder = site_folder + '/source'
     _create_directory_structure_if_necessary(site_folder) #，即使某个文件夹已经存在也不会报错
     _get_latest_source(source_folder)

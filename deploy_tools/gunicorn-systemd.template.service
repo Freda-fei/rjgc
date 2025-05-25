@@ -4,7 +4,6 @@ Description=Gunicorn server for SITENAME
 [Service]
 Restart=on-failure
 User=yyy
-Group=www-data
 WorkingDirectory=/home/yyy/sites/47.243.21.204_8092/source
 ExecStart=/home/yyy/sites/47.243.21.204_8092/virtualenv/bin/gunicorn --bind unix:/yyy/47.243.21.204.socket notes.wsgi:application
 
