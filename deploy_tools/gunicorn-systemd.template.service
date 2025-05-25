@@ -1,0 +1,12 @@
+[Unit]
+Description=Gunicorn server for SITENAME
+
+[Service]
+Restart=on-failure
+User=yyy
+Group=www-data
+WorkingDirectory=/home/yyy/sites/SITENAME/source
+ExecStart=/home/yyy/sites/SITENAME/virtualenv/bin/gunicorn notes.wsgi:application
+
+[Install]
+WantedBy=multi-user.target
