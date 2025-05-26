@@ -1,11 +1,22 @@
 [Unit]
-Description=Gunicorn server for SITENAME
+Description=Gunicorn server for 47.243.21.204
+After=network.target
 
 [Service]
-Restart=on-failure
 User=yyy
+Group=yyy
+RuntimeDirectory=yyy
+RuntimeDirectoryMode=0755
 WorkingDirectory=/home/yyy/sites/47.243.21.204_8092/source
-ExecStart=/home/yyy/sites/47.243.21.204_8092/virtualenv/bin/gunicorn --bind unix:/yyy/47.243.21.204.socket notes.wsgi:application
+Environment="PATH=/home/yyy/sites/47.243.21.204_8092/virtualenv/bin:/usr/bin:/bin"
+Environment="PYTHONPATH=/home/yyy/sites/47.243.21.204_8092/source"
+ExecStartPre=/bin/rm -f /run/yyy/47.243.21.204.socket
+ExecStart=/home/yyy/sites/47.243.21.204_8092/virtualenv/bin/gunicorn \
+          --bind unix:/run/yyy/47.243.21.204.socket \
+          --pid /run/yyy/gunicorn.pid \
+          notes.wsgi:application
+Restart=on-failure
+RestartSec=5s
 
 [Install]
 WantedBy=multi-user.target
